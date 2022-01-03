@@ -1,0 +1,41 @@
+<!-- <button class="mainbtn" bindtap="tomap" style="position: relative; left: -33rpx; top: 772rpx">获取定位</button> -->
+<view class="page" data-weui-theme="{{theme}}">
+    <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+    <mp-form-page title="表单结构" subtitle="展示表单页面的信息结构样式, 分别由头部区域/控件区域/提示区域/操作区域和底部信息区域组成。">
+        <mp-form catchsubmit="formSubmit" id="form" rules="{{rules}}" models="{{formData}}">
+            <view class="weui-form__text-area">
+                <view class="weui-form__title" style="margin-top: 5%;">分诊信息填写</view>
+                 <view class="weui-form__desc">请将个人信息输入下方</view>
+             </view>
+             <mp-cells title="*为必填项" style="margin-top:20%;display: block;">
+                <mp-cell title="姓名" ext-class="">
+                    <input class="weui-input" value="{{formData.name}}" name="formData.name" required bindinput="formInputChange" data-field="name"  placeholder="请输入姓名" />
+                </mp-cell>
+                <mp-cell title="性别" ext-class="">
+                    <radio-group bindchange="radioChange" class="weui-flex justify">
+                        <view wx:for="{{sex}}" wx:key="value" class="weui-flex__item">
+                            <radio value="{{item.id}}" color="#ff0000" checked="{{item.checked}}">{{item.value}}</radio>
+                            <!-- <view class="radiotxt">{{item.value}}</view> -->
+                        </view>
+                    </radio-group>
+                </mp-cell>
+                <mp-cell title="年龄" ext-class="">
+                    <input class="weui-input" bindinput="formInputChange" value="{{formData.age}}" name="formData.age" data-field="age" placeholder="请输入年龄" max='120'/>
+                </mp-cell>
+                <mp-cell has-footer="{{false}}" title="*主诉" ext-class="">
+                    <textarea class="weui-textarea" name="content" data-field="content" bindinput="formInputChange" model:value="{{content}}" placeholder="请描述您的症状" style="height: 3.3em; position: relative; left: -2rpx; top: 0rpx"/>
+                    <!-- <view class="weui-textarea-counter">0/200</view> -->
+                </mp-cell>
+                <mp-cell has-footer="{{false}}" title="既往史" ext-class="">
+                    <textarea class="weui-textarea" placeholder="有无既往史，没有可空" style="height: 3.3em; position: relative; left: 0rpx; top: -4rpx" />
+                    <!-- <view class="weui-textarea-counter">0/200</view> -->
+                </mp-cell>
+            </mp-cells>
+            <view slot="button" style="margin-top: 10%;">
+                <button class="weui-btn" formType="submit" type="primary" bindtap="formSubmit">确定</button>
+             </view>
+        </mp-form>
+       
+    </mp-form-page>
+</view>
